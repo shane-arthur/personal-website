@@ -25,6 +25,7 @@ if (__DEVELOPMENT__) {
 }
 
 require('./routes/cardsApi').default(app);
+require('./routes/resumeApi').default(app);
 require('./routes/ssrHandler').default(app);
 
 server.listen('3000', (err) => {

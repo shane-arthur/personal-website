@@ -1,15 +1,15 @@
-import React, {Component, PropTypes} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as ViewActions from '../actions';
 import Marker from '../components/Marker';
 import Card from '../components/Card';
 import SelectedWrapper from '../containers/SelectedWrapper';
 import PictureWithFrame from '../components/PictureWithFrame';
-import {MAINPAGE_STYLE, MAINPAGE_WRAPPER_STYLE} from '../constants/styles/Mainpage-Styles';
-import {CARD_STYLE} from '../constants/styles/Card-Styles';
-import {MARKER_STYLES} from '../constants/styles/Marker-Styles';
-import Radium, { StyleRoot} from 'radium';
+import { MAINPAGE_STYLE, MAINPAGE_WRAPPER_STYLE } from '../constants/styles/Mainpage-Styles';
+import { CARD_STYLE } from '../constants/styles/Card-Styles';
+import { MARKER_STYLES } from '../constants/styles/Marker-Styles';
+import Radium, { StyleRoot } from 'radium';
 import { iconMappings } from '../constants/iconMappings';
 import { fetchData } from '../actions/index';
 
@@ -24,10 +24,11 @@ class MainpageContainer extends Component {
         const selectedCardId = this._extractSelectedCard(this.props.views.items);
         if (this._extractCardIds(this.props.views.items).indexOf(selectedCardId) > -1) {
             return (<SelectedWrapper
-                component={this.props.views.items[selectedCardId -1].component}/>);
+                actions={this.props.actions}
+                component={this.props.views.items[selectedCardId - 1].component} />);
         }
         else {
-            return (<PictureWithFrame/>);
+            return (<PictureWithFrame />);
         }
     }
 
@@ -36,7 +37,7 @@ class MainpageContainer extends Component {
             actions={this.props.actions}
             selected={item.selected}
             style={MARKER_STYLES[item.id]}
-            hoverIcon={this._generateHoverIcon(item.icon) }/>));
+            hoverIcon={this._generateHoverIcon(item.icon)} />));
     }
 
     _generateHoverIcon(iconKey) {

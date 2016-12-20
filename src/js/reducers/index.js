@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import views from './views';
+import resume from './resume';
 
 const rootReducer = combineReducers({
-    views
+    views,
+    resume
 })
 
 export default rootReducer
