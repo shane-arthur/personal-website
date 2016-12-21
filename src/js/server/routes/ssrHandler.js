@@ -34,9 +34,8 @@ export default function (app) {
             }
             else {
                 getData().then((result) => {
-                    console.log('Shane : ' + typeof result);
-                    let reduxState = escape(JSON.stringify(result));
                     var store = configureStore(result);
+                    let reduxState = escape(JSON.stringify(result));
                     let html = ReactDOMServer.renderToString(
                         <StyleRoot>
                             <Provider store={store}>

@@ -18,15 +18,7 @@ import getData from '../data/dataFetcher';
 class MainpageContainer extends Component {
 
     static fetchData() {
-        return new Promise((resolve, reject) => {
-            getData('cards').then(result => {
-                resolve(result);
-            }).catch(error => {
-                reject(error);
-            });
-        });
-
-
+        return getData('cards');
     }
 
     _renderCards() {

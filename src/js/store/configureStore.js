@@ -1,12 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/index';
 import apiMiddleware from '../middleware/api';
-import { initialState } from '../constants/mainpageInitialState';
-
-const createStoreWithMiddleware = applyMiddleware(
-  apiMiddleware
-)(createStore)
-
 
 export default function configureStore(initialState) {
     const store = createStore(rootReducer, initialState);
@@ -16,5 +10,6 @@ export default function configureStore(initialState) {
             store.replaceReducer(nextReducer);
         })
     }
+    
     return store;
 }
