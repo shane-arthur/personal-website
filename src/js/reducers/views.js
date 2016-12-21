@@ -1,13 +1,13 @@
 import { SELECT_CARD, HIDE_CARD } from '../constants/ActionTypes';
-import { initialState } from '../constants/mainpageInitialState';
+//import { initialState } from '../constants/mainpageInitialState';
 import getData from '../data/dataFetcher';
 
-export default function views(state = null, action) {
+export default function views(state = {}, action) {
     switch (action.type) {
         case SELECT_CARD:
             return (setSelectedCard(state, action.cardId));
         default:
-            return initialState;
+            return state;
     }
 }
 

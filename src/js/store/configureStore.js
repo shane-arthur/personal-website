@@ -6,7 +6,10 @@ const createStoreWithMiddleware = applyMiddleware(
   apiMiddleware
 )(createStore)
 
+
 export default function configureStore(initialState) {
+    console.log(initialState);
+    console.log('Shane');
     const store = createStoreWithMiddleware(rootReducer, initialState);
     if (module.hot) {
         module.hot.accept('../reducers', () => {

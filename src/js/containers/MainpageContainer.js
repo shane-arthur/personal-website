@@ -17,7 +17,7 @@ import { fetchData } from '../actions/index';
 class MainpageContainer extends Component {
 
     static fetchData({ store, params, history }) {
-        return store.dispatch(fetchData('cards'));
+        return [store.dispatch(fetchData('cards')),;
     }
 
     _renderCards() {

@@ -12,9 +12,9 @@ import createRoutes from '../../routes/index';
 export default function (app) {
     app.get('*', (req, res, next) => {
         let history = useRouterHistory(useQueries(createMemoryHistory))();
-        let store = configureStore();
         let routes = createRoutes(history);
         let location = history.createLocation(req.url);
+        let store = configureStore();
         const createElement = (Component, props) => (
             <Component
                 {...props}
@@ -34,7 +34,8 @@ export default function (app) {
                 res.status(404).send('Not Found');
             }
             else {
-                getData().then(() => {
+                getData().then((result) => {
+                    console.log(`fuck ! : ${result}`)
                     let reduxState = escape(JSON.stringify(store.getState()));
                     let html = ReactDOMServer.renderToString(
                         <StyleRoot>
