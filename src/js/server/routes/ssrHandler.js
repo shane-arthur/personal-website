@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {useRouterHistory, RouterContext, match} from 'react-router';
-import {createMemoryHistory, useQueries} from 'history';
+import { useRouterHistory, RouterContext, match } from 'react-router';
+import { createMemoryHistory, useQueries } from 'history';
 import configureStore from '../../store/configureStore';
 import { Provider } from 'react-redux';
 import { Promise } from 'bluebird';
@@ -14,7 +14,6 @@ export default function (app) {
         let history = useRouterHistory(useQueries(createMemoryHistory))();
         let routes = createRoutes(history);
         let location = history.createLocation(req.url);
-        let store = configureStore();
         const createElement = (Component, props) => (
             <Component
                 {...props}
@@ -35,11 +34,12 @@ export default function (app) {
             }
             else {
                 getData().then((result) => {
-                    console.log(`fuck ! : ${result}`)
-                    let reduxState = escape(JSON.stringify(store.getState()));
+                    console.log('Shane : ' + typeof result);
+                    let reduxState = escape(JSON.stringify(result));
+                    var store = configureStore(result);
                     let html = ReactDOMServer.renderToString(
                         <StyleRoot>
-                            <Provider store ={store}>
+                            <Provider store={store}>
                                 <RouterContext
                                     {...renderProps}
                                     createElement={createElement} />
@@ -55,9 +55,13 @@ export default function (app) {
                     let data = renderProps.components[renderProps.components.length - 1].WrappedComponent
                     try {
                         if (data.fetchData) {
-                            data.fetchData({ query, params, store, history })
+                            data.fetchData().then(result => {
+                                resolve(result);
+                            });
                         }
-                        resolve();
+                        else {
+                            resolve({});
+                        }
                     }
                     catch (e) {
                         console.log(e);

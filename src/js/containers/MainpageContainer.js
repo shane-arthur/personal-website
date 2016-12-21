@@ -12,12 +12,21 @@ import { MARKER_STYLES } from '../constants/styles/Marker-Styles';
 import Radium, { StyleRoot } from 'radium';
 import { iconMappings } from '../constants/iconMappings';
 import { fetchData } from '../actions/index';
+import getData from '../data/dataFetcher';
 
 @Radium
 class MainpageContainer extends Component {
 
-    static fetchData({ store, params, history }) {
-        return [store.dispatch(fetchData('cards')),;
+    static fetchData() {
+        return new Promise((resolve, reject) => {
+            getData('cards').then(result => {
+                resolve(result);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+
+
     }
 
     _renderCards() {

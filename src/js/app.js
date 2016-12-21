@@ -17,8 +17,6 @@ if (window.__REDUX_STATE__) {
     }
 }
 
-console.log('fuck');
-console.log(state);
 const store = configureStore(state);
 ReactDOM.render((
     <Provider store ={store} radiumConfig={{userAgent: navigator.userAgent}}>

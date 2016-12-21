@@ -1,5 +1,4 @@
 import { SELECT_CARD, HIDE_CARD } from '../constants/ActionTypes';
-//import { initialState } from '../constants/mainpageInitialState';
 import getData from '../data/dataFetcher';
 
 export default function views(state = {}, action) {

@@ -1,6 +1,6 @@
 
 
-export const initialState = {
+export const initialState1 = {
     items:
     [
         { id: 1, icon: 'mail', selected: false, component: 'card' },

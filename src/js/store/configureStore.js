@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/index';
 import apiMiddleware from '../middleware/api';
+import { initialState } from '../constants/mainpageInitialState';
 
 const createStoreWithMiddleware = applyMiddleware(
   apiMiddleware
@@ -8,9 +9,7 @@ const createStoreWithMiddleware = applyMiddleware(
 
 
 export default function configureStore(initialState) {
-    console.log(initialState);
-    console.log('Shane');
-    const store = createStoreWithMiddleware(rootReducer, initialState);
+    const store = createStore(rootReducer, initialState);
     if (module.hot) {
         module.hot.accept('../reducers', () => {
             const nextReducer = require('../reducers').default;
