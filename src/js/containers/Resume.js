@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchData } from '../actions/index';
+import getData from '../data/dataFetcher';
 
 class Resume extends Component {
 
-    static fetchData({ store, params, history }) {
-        return store.dispatch(fetchData('resumeApi'));
+   static fetchData() {
+        return getData('resumeApi');
     }
-
     render() {
         var vince = this.props;
         return (

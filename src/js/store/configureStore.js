@@ -1,6 +1,5 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from '../reducers/index';
-import apiMiddleware from '../middleware/api';
 
 export default function configureStore(initialState) {
     const store = createStore(rootReducer, initialState);

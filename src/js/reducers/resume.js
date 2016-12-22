@@ -1,5 +1,5 @@
 
-export default function resume(state = {"plastic" : "goon"}, action) {
+export default function resume(state = {}, action) {
     switch (action.type) {
         default:
             return state;
