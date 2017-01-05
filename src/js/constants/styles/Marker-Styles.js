@@ -1,5 +1,4 @@
 const GLOBAL_MARKER = {
-
     position: "absolute",
     zIndex: 9,
     display: "block"

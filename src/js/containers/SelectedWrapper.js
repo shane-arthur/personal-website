@@ -1,27 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import Card from '../components/Card';
-import Resume from '../containers/resume';
-
+import ResumeContainer from '../containers/ResumeContainer';
 
 export default class SelectedWrapper extends Component {
     constructor(props, context) {
         super(props);
-        this.router = context.router;
         this.componentMappings = {
             "card": { "component": Card },
-            "resume": { "component": Resume, "action": this.performActionAsNeeded }
+            "resume": { "action": this.performActionAsNeeded }
         };
     }
 
-    componentDidMount() {
-        if (this.componentMappings[this.props.component].action) {
-            this.componentMappings[this.props.component].action.bind(this)();
-        }
-    }
-
     performActionAsNeeded() {
-        this._resetSelectedMarker();
-        this.router.push('/resume');
+        window.location.href = '/resume';
     }
 
     _resetSelectedMarker() {
@@ -30,15 +21,19 @@ export default class SelectedWrapper extends Component {
 
 
     render() {
-        let ComponentToRender = this.componentMappings[this.props.component].component;
-        return (
-            <ComponentToRender />
-        );
+        if (this.componentMappings[this.props.component].component) {
+            let ComponentToRender = this.componentMappings[this.props.component].component;
+            return (
+                <ComponentToRender/>
+            );
+        }
+        else {
+            this.componentMappings[this.props.component].action();
+            return (
+                null
+            );
+        }
     }
-}
-
-SelectedWrapper.contextTypes = {
-    router: React.PropTypes.object.isRequired
 }
 
 SelectedWrapper.PropTypes = {

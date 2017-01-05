@@ -12,11 +12,12 @@ export default function views(state = {}, action) {
 
 function setSelectedCard(state, cardId) {
     state.items.forEach(item => {
-        item.selected = false;
+        if (item.id !== cardId) {
+            item.selected = false;
+        }
     });
     const selectedItem = state.items.find(item => { return item.id === cardId }) || null;
-    if (selectedItem) {
-        selectedItem.selected = !selectedItem.selected;
-    }
+    selectedItem.selected = !selectedItem.selected;
     return (Object.assign({}, state, { items: state.items }));
 };
+
