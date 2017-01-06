@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import Card from '../components/Card';
 import ResumeContainer from '../containers/ResumeContainer';
+import EmailPageContainer from '../containers/EmailPageContainer';
 
 export default class SelectedWrapper extends Component {
     constructor(props, context) {
         super(props);
         this.componentMappings = {
             "card": { "component": Card },
-            "resume": { "action": this.performActionAsNeeded }
+            "resume": { "action": this.performActionAsNeeded },
+            "mail": { "component": EmailPageContainer }
         };
     }
 
