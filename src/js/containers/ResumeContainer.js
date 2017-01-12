@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import getData from '../data/dataFetcher';
+import { getData } from '../data/dataFetcher';
 
 class Resume extends Component {
 

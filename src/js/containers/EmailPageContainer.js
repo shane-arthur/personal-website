@@ -5,7 +5,8 @@ export default class EmailPageContainer extends Component {
 
     render() {
         return (
-            <EmailGrid/>
+            <EmailGrid
+            errorMessage={"Error Man!"}/>
         );
     }
 }

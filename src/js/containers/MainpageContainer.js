@@ -12,7 +12,7 @@ import { MARKER_STYLES } from '../constants/styles/Marker-Styles';
 import Radium, { StyleRoot } from 'radium';
 import { iconMappings } from '../constants/iconMappings';
 import { fetchData } from '../actions/index';
-import getData from '../data/dataFetcher';
+import { getData } from '../data/dataFetcher';
 
 @Radium
 class MainpageContainer extends Component {

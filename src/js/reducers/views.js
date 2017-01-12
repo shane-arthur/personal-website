@@ -1,5 +1,4 @@
 import { SELECT_CARD, HIDE_CARD } from '../constants/ActionTypes';
-import getData from '../data/dataFetcher';
 
 export default function views(state = {}, action) {
     switch (action.type) {
