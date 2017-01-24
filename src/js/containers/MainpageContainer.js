@@ -26,7 +26,7 @@ class MainpageContainer extends Component {
         if (this._extractCardIds(this.props.views.items).indexOf(selectedCardId) > -1) {
             return (<SelectedWrapper
                 actions={this.props.actions}
-                component={this.props.views.items[selectedCardId - 1].component} />);
+                component={this.props.views.items[selectedCardId - 1]} />);
         }
         else {
             return (<PictureWithFrame />);

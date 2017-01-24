@@ -30,4 +30,8 @@ export default class Formatter {
         var value = `${parseInt(pixelValueOne.split("px")[0]) + parseInt(pixelValueTwo.split("px")[0])}px`
         return value;
     }
+
+    shrinkPixelsByFactor(pixelValue, factor) {
+        return `${parseInt(pixelValue.split("px")[0])/factor}px`;
+    }
 }

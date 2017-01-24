@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import Card from '../components/Card';
-import ResumeContainer from '../containers/ResumeContainer';
 import EmailPageContainer from '../containers/EmailPageContainer';
+import ProfileCard from '../components/ProfileCard';
 
 export default class SelectedWrapper extends Component {
     constructor(props, context) {
         super(props);
         this.componentMappings = {
-            "card": { "component": Card },
-            "resume": { "action": this.performActionAsNeeded },
-            "mail": { "component": EmailPageContainer }
+            "card": { "component": <Card/> },
+            "resume": { "action": this.performActionAsNeeded},
+            "mail": { "component": <EmailPageContainer actions={this.props.actions} markerProps={this.props.component}/> },
+            "profile": { component: <ProfileCard /> }
         };
     }
 
@@ -23,14 +24,14 @@ export default class SelectedWrapper extends Component {
 
 
     render() {
-        if (this.componentMappings[this.props.component].component) {
-            let ComponentToRender = this.componentMappings[this.props.component].component;
+        if (this.componentMappings[this.props.component.component].component) {
+            let ComponentToRender = this.componentMappings[this.props.component.component].component;
             return (
-                <ComponentToRender/>
+                ComponentToRender
             );
         }
         else {
-            this.componentMappings[this.props.component].action();
+            this.componentMappings[this.props.component.component].action();
             return (
                 null
             );
