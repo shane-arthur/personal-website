@@ -15,7 +15,7 @@ module.exports = {
         ]
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: 'http://localhost:'+devServerPort+'/dist/'
     },

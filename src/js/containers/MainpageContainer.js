@@ -26,7 +26,9 @@ class MainpageContainer extends Component {
         if (this._extractCardIds(this.props.views.items).indexOf(selectedCardId) > -1) {
             return (<SelectedWrapper
                 actions={this.props.actions}
+                selectedTab={this.props.tab}
                 component={this.props.views.items[selectedCardId - 1]} />);
+
         }
         else {
             return (<PictureWithFrame />);
@@ -55,7 +57,7 @@ class MainpageContainer extends Component {
     _extractCardIds(cards) {
         return cards.map(card => {
             return card.id;
-        })
+        });
     }
 
 
@@ -83,7 +85,8 @@ MainpageContainer
 function
 mapStateToProps(state) {
     return {
-        views: state.views
+        views: state.views,
+        tab: state.tab.selectedTab
     }
 }
 

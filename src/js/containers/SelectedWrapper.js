@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import Card from '../components/Card';
 import EmailPageContainer from '../containers/EmailPageContainer';
-import ProfileCard from '../components/ProfileCard';
+import ProfileCard from '../components/ProfileCard/ProfileCard';
 
 export default class SelectedWrapper extends Component {
-    constructor(props, context) {
-        super(props);
+    _initializeComponentMappings() {
         this.componentMappings = {
             "card": { "component": <Card/> },
-            "resume": { "action": this.performActionAsNeeded},
+            "resume": { "action": this.performActionAsNeeded },
             "mail": { "component": <EmailPageContainer actions={this.props.actions} markerProps={this.props.component}/> },
-            "profile": { component: <ProfileCard /> }
+            "profile": { reload: true, component: <ProfileCard actions={this.props.actions} selectedTab={this.props.selectedTab}/> }
         };
     }
 
@@ -24,14 +23,16 @@ export default class SelectedWrapper extends Component {
 
 
     render() {
-        if (this.componentMappings[this.props.component.component].component) {
-            let ComponentToRender = this.componentMappings[this.props.component.component].component;
+        this._initializeComponentMappings();
+        const componentMapping = this.componentMappings[this.props.component.component];
+        if (componentMapping.component) {
+            let ComponentToRender = componentMapping.component;
             return (
                 ComponentToRender
             );
         }
-        else {
-            this.componentMappings[this.props.component.component].action();
+        else if (componentMapping.action) {
+            componentMapping.action();
             return (
                 null
             );

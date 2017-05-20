@@ -4,7 +4,8 @@ import { sendData }  from '../data/dataFetcher';
 
 export default class EmailPageContainer extends Component {
 
-    _handleSubmit(self, email, name, message) {
+
+    _handleSubmit(actions, email, name, message) {
         let errors = [];
         (function validate(validations){
             (() => {
@@ -31,13 +32,13 @@ export default class EmailPageContainer extends Component {
             })();
 
             if (errors.length > 0) {
-               // this.setState({ errorMessage: errors.join(', ') });
+              actions.setEmailErrorMessage(errors.join(', '));
             }
             else {
                 sendData('sendMail', validations).then(result => {
-                    self.props.actions.toggleSuccessMessagePopup();
+                    actions.toggleSuccessMessagePopup();
                 }).catch(error => {
-                    //this.setState({ errorMessage: `Error : ${error}` });
+                     actions.setEmailErrorMessage(error);
                 })
             }
         })({ Name: name, Email: email, Message: message });
@@ -48,9 +49,9 @@ export default class EmailPageContainer extends Component {
         return (
             <EmailGrid
                 actions= {this.props.actions}
-                errorMessage= {this.props.errorMessage}
+                errorMessage= {this.props.markerProps.errorMessage}
                 handleSubmit = {this._handleSubmit}
-                isPopupVisible = {this.props.markerProps.showSucessPopup}/>
+                popup = {this.props.markerProps.showSuccessPopup}/>
         );
     }
 }

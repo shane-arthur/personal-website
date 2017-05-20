@@ -7,18 +7,19 @@ const ValueFormatter = new Formatter();
 
 export default class EmailGrid extends Component {
 
-    _formSuccessPopup(email) {
+    _formSuccessPopup() {
+        const email = this.refs.emailInput ? this.refs.emailInput.value : null;
         const newInnerStyle = Object.assign({}, CARD_STYLE);
         newInnerStyle.background = 'white';
         delete newInnerStyle.top;
         delete newInnerStyle.left;
-        return this.props.isPopupVisible ? <div style={ newInnerStyle }><MessagePopup
+        return this.props.popup ? <div style={ newInnerStyle }><MessagePopup
             style={{ 'opacity': 1, textAlign: 'center', 'height': ValueFormatter.shrinkPixelsByFactor(CARD_STYLE.height, 2), 'width': ValueFormatter.shrinkPixelsByFactor(CARD_STYLE.width, 2), borderRadius: '75px', border: '0.5px solid black', 'background': 'white', 'position': 'absolute', left: ValueFormatter.shrinkPixelsByFactor(CARD_STYLE.left, 2), top: ValueFormatter.shrinkPixelsByFactor(CARD_STYLE.top, 2) }}
             email={email}/></div> : null
     }
 
     _formBackArrow() {
-        return this.props.isPopupVisible ? <div style={{ margin: '0 0 50px 50px', left: 0, bottom: 0, position: 'absolute' }}><BackButton
+        return this.props.popup ? <div style={{ margin: '0 0 50px 50px', left: 0, bottom: 0, position: 'absolute' }}><BackButton
             backAction={() => this.props.actions.selectedCard(0) } /></div> : null;
     }
 
@@ -26,8 +27,8 @@ export default class EmailGrid extends Component {
         let email = this.refs.emailInput.value;
         let name = this.refs.nameInput.value;
         let text = this.refs.textAreaInput.value;
-        let self = this;
-        this.props.handleSubmit(self, email, name, text);
+        let actions = this.props.actions;
+        this.props.handleSubmit(actions, email, name, text);
     }
 
     render() {
@@ -41,7 +42,7 @@ export default class EmailGrid extends Component {
             marginTop: '25px'
         };
 
-        const successPopup = this._formSuccessPopup(this.refs.email);
+        const successPopup = this._formSuccessPopup();
         const backArrow = this._formBackArrow();
 
         return (

@@ -4,13 +4,26 @@ import { getData } from '../data/dataFetcher';
 
 class Resume extends Component {
 
-   static fetchData() {
+    static fetchData() {
         return getData('resumeApi');
     }
+
+
+    returnStyle() {
+        return {
+            width: '500px',
+            height: '500px',
+            border: '2px solid black',
+            position: 'absolute',
+            left: '25%',
+            top: '25%'
+        };
+    }
+
     render() {
         var vince = this.props;
         return (
-            <div> Shane is King !# @1 </div>
+            <div style={this.returnStyle() }> Shane is King !# @1 </div>
         );
     }
 }
