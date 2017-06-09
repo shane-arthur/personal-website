@@ -22,6 +22,7 @@
     "mongodb": "^2.1.16",
     "mongoose": "^4.4.12",
     "nodemailer": "^2.7.0",
+    "path": "^0.12.7",
     "radium": "^0.18.1",
     "react": "15.x",
     "react-dom": "15.x",
